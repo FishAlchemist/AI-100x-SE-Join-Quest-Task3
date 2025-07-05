@@ -1,0 +1,71 @@
+# Task
+請你嚴格遵照「行為驅動開發 (BDD)」的方式，來完成 @chinese_chess.feature 中所有驗收情境的開發。
+不可同時進行 BDD 開發流程中多個步驟也不能略過任何一步驟，必須一步一步扎實執行並確認每一步的結果。
+非必要不要修改到已經開發的功能和測試。
+
+# Context
+
+## Tech Stack
+1. Language Env：Python 3.11
+2. BDD Test framework: behave
+3. Native test framework: pytest
+4. Python package and project manager: uv (Astral-sh)
+5. Python linter and code formatter: Ruff (Astral-sh)
+
+## Application Environment
+1. App 類型：純模組程式碼
+2. 此 feature file 中的所有邏輯存放至 ChineseChessService 中
+3. Source code root: src/
+
+**重要注意事項：**
+**所有 Python 相關的命令（例如 `behave`, `ruff`）都必須透過 `uv run --group dev` 執行，以確保在正確的虛擬環境中操作，例如 `uv run --group dev behave`。專案依賴管理必須嚴格使用 `pyproject.toml` 和 `uv`，不得手動進入虛擬環境或使用其他依賴管理工具。**
+
+# 通用工具使用原則
+- **避免無異議操作**：在呼叫 `write_file` 或 `replace` 等檔案修改工具前，**必須**先讀取目標檔案的當前內容。**必須**比對預計寫入的內容與當前內容是否完全相同。如果兩者沒有任何差異，則**禁止**呼叫該工具，以避免不必要的空操作。
+
+# BDD 開發流程
+
+## 核心開發原則
+- **需求檔案的修改限制**：
+  - **允許**：為了控制測試範圍，可以對 Scenarios 新增或修改 `@skip` 等 `behave` 標籤。
+  - **允許 (在必要時)**：如果 `chinese_chess.feature` 的內容存在語法錯誤，導致 `behave` 無法正常解析和執行，可以進行最小程度的修復以使其恢復運作。
+  - **嚴禁**：絕對禁止註解、刪除或修改任何 Scenario 的標題 (Title) 或步驟 (Given/When/Then)。需求的變更必須由使用者手動進行。
+- **保護已完成的工作**：對於已經開發完成並通過測試的 Scenario，嚴禁修改其對應的 `steps` 實作和 `src` 中的功能程式碼，除非是為了讓新的 Scenario 通過測試所做的必要擴展。
+
+## 開發步驟
+1.  **建立 Walking Skeleton**：確保 `behave` 測試框架可以順利啟動，並執行 `chinese_chess.feature` 中的一個場景，確認測試框架整合成功。
+
+2.  **依序實作各個 Scenario**：嚴格遵循 BDD 的「紅-綠-重構」循環，一次只專注於一個 Scenario。使用 `@skip` 標籤忽略所有其他 Scenarios。
+
+    A. **(紅) 撰寫失敗的測試**：
+       - 針對當前 Scenario，撰寫對應的 `steps` 檔案內容。
+       - 在 `src/` 中建立必要的空類別或函式。
+       - 執行 `uv run --group dev behave`。
+       - **必須確認**：測試結果為 **失敗 (Failed)**。失敗的原因必須是步驟實現 (step implementation) 中的 `NotImplementedError`、`AssertionError` 或其他預期中的邏輯錯誤，而不是環境或框架設定錯誤。
+
+    B. **(綠) 撰寫通過測試的程式碼**：
+       - 撰寫最精簡的 `src/` 程式碼，其唯一目的就是讓上一步的失敗測試轉為 **通過 (Passed)**。
+       - 執行 `uv run --group dev behave`。
+       - **必須確認**：當前 Scenario 的所有步驟都已通過。並在報告中覆述目前通過的測試數量。
+
+    C. **(重構) 程式碼品質優化**：
+       - 在測試通過的前提下，對剛剛在步驟 (B) 中撰寫的程式碼進行重構，以提高可讀性和維護性。
+       - **重構的限制**：不應改變任何外部可見的行為，僅優化內部實作。
+       - 重構後，再次執行 `uv run --group dev behave`。
+       - **必須確認**：所有測試依然 **維持通過 (Passed)**。如果因重構導致測試失敗，必須立即修復。
+
+    D. **(格式化) 維護程式碼風格**：
+       - 執行 `uv run --group dev ruff format src/` 和 `uv run --group dev ruff check src/`。
+       - 若 `ruff` 进行了自動修復，則需再次執行 `uv run --group dev behave`。
+       - **必須確認**：所有測試依然 **維持通過 (Passed)**。
+
+3.  **完成所有 Scenarios**：重複步驟 2，直到 `chinese_chess.feature` 中的所有 Scenarios 都被實作完成且全部測試通過。
+
+**開發結束後報告生成：**
+**在所有驗收情境開發完成並通過測試後，請執行以下步驟生成報告：**
+**1. 生成 JSON 格式的 behave 報告：**
+   **執行 `uv run --group dev behave --format json --outfile reports/behave_report.json` 命令。**
+**2. 生成 Allure 報告：**
+   **執行 `uv run --group dev behave -f allure_behave.formatter:AllureFormatter -o reports/allure-results` 命令，生成 Allure 原始數據。**
+   **然後，執行 `allure generate reports/allure-results --clean -o reports/allure-report` 命令，生成 Allure HTML 報告。**
+   **最後，執行 `allure open reports/allure-report` 命令，在瀏覽器中打開 Allure 報告。**
