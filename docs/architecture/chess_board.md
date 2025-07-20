@@ -2,8 +2,8 @@ Class: ChessBoard
   // 描述：代表中國象棋棋盤，管理所有棋子的位置。
   // 座標系統：
   //   - 使用 (row, column) 表示位置。
-  //   - 棋盤大小：10 行 x 9 列。
-  //   - 第 1 行是紅方的底線；第 10 行是黑方的頂線。
+  //   - 棋盤大小：10 行 (rows) x 9 列 (columns)。
+  //   - 第 1 行 (row) 是紅方的底線；第 10 行 (row) 是黑方的頂線。
   //   - 第 1 列是從紅方視角看最左邊的列。
 
   - Attributes:
@@ -35,3 +35,11 @@ Class: ChessBoard
     // 對於基於遊戲規則的非法移動（例如，無效的棋子移動、路徑被阻擋、將軍），考慮返回更詳細的結果物件或枚舉，而不是簡單的布林值。
     - is_position_on_board(position: (row, column)): boolean
     // 檢查給定的 (row, column) 位置是否在棋盤的有效邊界內。
+    - is_in_river(position: (row, column), player_color: Color): boolean
+    // 檢查給定的 (row, column) 位置是否在指定玩家的楚河漢界 (river) 邊界上。
+    // 對於紅方 (Red)，楚河漢界 (river) 邊界是第 5 行 (row)。
+    // 對於黑方 (Black)，楚河漢界 (river) 邊界是第 6 行 (row)。
+    - is_in_palace(position: (row, column), player_color: Color): boolean
+    // 檢查給定的 (row, column) 位置是否在指定玩家的九宮 (palace) 內。
+    // 對於紅方 (Red)，九宮 (palace) 範圍是行 (row) 1-3，列 (column) 4-6。
+    // 對於黑方 (Black)，九宮 (palace) 範圍是行 (row) 8-10，列 (column) 4-6。
