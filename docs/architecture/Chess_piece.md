@@ -83,6 +83,16 @@ Class: Elephant
   - Methods:
     - is_valid_move(start_position: (row, column), end_position: (row, column)): boolean
     // 檢查相/象的移動是否有效。
+    // 相（象）的移動規則：
+    //   - 斜著飛過一個田字格 (diagonal move across a 'field' square)。
+    //   - 移動時，行 (row) 和列 (column) 都必須改變 2 個單位，例如從 (r, c) 到 (r±2, c±2)。
+    //   - 不能過河 (cannot cross the river)。
+    // 絆象腿 (blocking elephant's leg)：
+    //   - 如果從 start_position (r1, c1) 到 end_position (r2, c2) 的移動路徑上，
+    //     位於田字格中心點 ((r1+r2)/2, (c1+c2)/2) 的位置有任何棋子阻擋，
+    //     則該次移動無效。
+    // 相（象）的吃子規則：
+    //   - 可以直接吃掉田字格上的棋子。
     - get_display_name(): string
     // 如果顏色是 RED 則返回 "相"，如果顏色是 BLACK 則返回 "象"。
 
