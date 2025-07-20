@@ -38,6 +38,10 @@ Class: Rook
   - Methods:
     - is_valid_move(start_position: (row, column), end_position: (row, column)): boolean
     // 檢查俥/車的移動是否有效。
+    // 車的移動規則：
+    //   - 沿直線（橫向或縱向）行棋，步數不限。
+    // 車的吃子規則：
+    //   - 吃子不需要配合，可以直接吃掉同一條直線上的棋子，但不能隔着吃子。
     - get_display_name(): string
     // 如果顏色是 RED 則返回 "俥"，如果顏色是 BLACK 則返回 "車"。
 

@@ -35,10 +35,10 @@ Class: ChessBoard
     // 對於基於遊戲規則的非法移動（例如，無效的棋子移動、路徑被阻擋、將軍），考慮返回更詳細的結果物件或枚舉，而不是簡單的布林值。
     - is_position_on_board(position: (row, column)): boolean
     // 檢查給定的 (row, column) 位置是否在棋盤的有效邊界內。
-    - is_in_river(position: (row, column), player_color: Color): boolean
-    // 檢查給定的 (row, column) 位置是否在指定玩家的楚河漢界 (river) 邊界上。
-    // 對於紅方 (Red)，楚河漢界 (river) 邊界是第 5 行 (row)。
-    // 對於黑方 (Black)，楚河漢界 (river) 邊界是第 6 行 (row)。
+    - is_in_opponent_territory(position: (row, column), player_color: Color): boolean
+    // 檢查給定的 (row, column) 位置是否在指定玩家的對方領地內（即已過楚河漢界）。
+    // 對於紅方 (Red)，對方領地是第 6 行 (row) 到第 10 行 (row)。
+    // 對於黑方 (Black)，對方領地是第 1 行 (row) 到第 5 行 (row)。
     - is_in_palace(position: (row, column), player_color: Color): boolean
     // 檢查給定的 (row, column) 位置是否在指定玩家的九宮 (palace) 內。
     // 對於紅方 (Red)，九宮 (palace) 範圍是行 (row) 1-3，列 (column) 4-6。
