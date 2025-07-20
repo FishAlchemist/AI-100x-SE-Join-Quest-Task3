@@ -74,7 +74,10 @@ Class: Soldier
   - Methods:
     - is_valid_move(start_position: (row, column), end_position: (row, column)): boolean
     // 檢查兵/卒的移動是否有效。
-    // 兵/卒在過楚河漢界 (river) 前不能橫向移動，過河後則可以橫向移動。
-    // 判斷是否過河需調用 ChessBoard.is_in_river 方法。
+    // 兵/卒不能後退。
+    // 過楚河漢界 (river) 前：只能向前移動一步，且只能吃掉前方一格的敵方棋子。
+    // 過楚河漢界 (river) 後：除了向前移動一步外，還可以橫向（左右）移動一步。
+    // 過楚河漢界 (river) 後：可以吃掉前方一格、左方一格或右方一格的敵方棋子。
+    // 此方法僅檢查棋子自身的移動模式，不考慮棋盤上的其他棋子或吃子行為。
     - get_display_name(): string
     // 如果顏色是 RED 則返回 "兵"，如果顏色是 BLACK 則返回 "卒"。
