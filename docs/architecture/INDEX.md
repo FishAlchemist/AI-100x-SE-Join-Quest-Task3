@@ -12,6 +12,6 @@
     *   定義了 `architecture` 資料夾內所有 Markdown 文件的撰寫規範，包括註釋風格、內容結構和描述要求。
 *   **[chess_board.md](chess_board.md)**
     *   描述了中國象棋棋盤的架構設計，包括其屬性、方法以及如何管理棋子位置。
-*   **[Chess_piece.md](Chess_piece.md)**
+*   **[chess_piece.md](chess_piece.md)**
     *   描述了中國象棋棋子的架構設計，包括棋子的類型、移動規則和狀態管理。
 
