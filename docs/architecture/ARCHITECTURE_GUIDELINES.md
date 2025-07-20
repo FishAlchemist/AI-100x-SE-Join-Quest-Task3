@@ -45,4 +45,12 @@ Class: [ClassName] // [可選的簡要描述/別名]
     - [method_name]([param1]: [type], [param2]: [type]): [ReturnType]
     // [符合描述要求的 Method 描述]
     - ...
+
+## 3. Commit Message Guidelines
+
+`architecture` 資料夾相關的提交訊息應遵循以下規範：
+
+*   **標題格式**：對於新增或修改架構文件的新功能，提交訊息標題應使用 `feat(architecture):` 前綴。
+    *   範例：`feat(architecture): Add soldier/pawn movement rules`
+*   **其他類型**：對於非功能性變更（例如修正錯字、格式調整），請使用適當的前綴（例如 `fix(architecture):`、`refactor(architecture):` 等）。
 ```
