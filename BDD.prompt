@@ -22,7 +22,7 @@
 
 # 通用工具使用原則
 - **避免無異議操作**：在呼叫 `write_file` 或 `replace` 等檔案修改工具前，**必須**先讀取目標檔案的當前內容。**必須**比對預計寫入的內容與當前內容是否完全相同。如果兩者沒有任何差異，則**禁止**呼叫該工具，以避免不必要的空操作。
-- **日誌寫入強制執行**：在執行開發計畫的每一步時，**必須**將「開發計畫」和「實作日誌」的內容寫入 `workflows/dev_plan.md` 和 `workflows/dev_log.md` 檔案。
+- **日誌寫入強制執行**：在執行開發計畫的每一步時，**必須**將「開發計畫」的內容寫入 `workflows/dev_plan.md` 檔案，並使用 `script/append_log.py` 工具將「實作日誌」的內容寫入 `workflows/dev_log.md` 檔案。
 
 # BDD 開發流程
 
@@ -36,10 +36,12 @@
 # 日誌檔案設定
 - **開發計畫檔案路徑**: `workflows/dev_plan.md`，位於專案根目錄下的 `workflows` 資料夾。
 - **實作日誌檔案路徑**: `workflows/dev_log.md`，位於專案根目錄下的 `workflows` 資料夾。
-- **寫入方式**: 
+- **寫入方式**:
   - 開發計畫 (The Plan) 應在開發流程從頭開始或計畫內容改動時覆寫 `workflows/dev_plan.md`。
-  - 實作日誌 (Implementation Log) 應以追加 (append) 模式寫入 `workflows/dev_log.md`。
-  - **使用方式**: 透過 `uv run --script script/append_log.py <日誌檔案路徑> "<日誌內容>"` 來追加日誌。若日誌內容包含多行或特殊字元，建議將內容寫入臨時檔案，然後透過 `uv run --script script/append_log.py <日誌檔案路徑> "@<臨時檔案路徑>"` 的方式傳遞。
+  - 實作日誌 (Implementation Log) 應以追加 (append) 模式寫入 `workflows/dev_log.md`，並**必須**透過 `uv run --script script/append_log.py` 工具進行。
+  - **使用方式**:
+    - **開發計畫**: 直接使用 `write_file` 工具將內容寫入 `workflows/dev_plan.md`。
+    - **實作日誌**: 透過 `uv run --script script/append_log.py <日誌檔案路徑> "<日誌內容>"` 來追加日誌。若日誌內容包含多行或特殊字元，建議將內容寫入臨時檔案，然後透過 `uv run --script script/append_log.py <日誌檔案路徑> "@<臨時檔案路徑>"` 的方式傳遞。
 
 ## 開發計畫與實作日誌 (Development Plan & Implementation Log)
 為確保開發過程的透明、可追蹤與嚴謹性，請結合「開發計畫」與「實作日誌」兩者並行，並將其內容寫入指定的檔案。
