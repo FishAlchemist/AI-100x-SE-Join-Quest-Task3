@@ -20,6 +20,14 @@ Class: General
   - Methods:
     - is_valid_move(start_position: (row, column), end_position: (row, column)): boolean
     // 檢查將/帥的移動是否有效。
+    // 將（帥）的移動規則：
+    //   - 只能在九宮 (palace) 內移動。
+    //   - 每次移動為橫向或縱向一格，即行 (row) 或列 (column) 改變 ±1。
+    // 將（帥）的吃子規則：
+    //   - 將（帥）可以直接吃掉其移動規則允許到達的敵方棋子。
+    // 特殊規則 (明將)：
+    //   - 將（帥）和對方的將（帥）不能在同一條豎線上直接面對面，中間沒有其他棋子阻擋。
+    //   - 任何一方走棋造成將帥直接碰面（即明將），則該方立刻輸棋。
     - get_display_name(): string
     // 如果顏色是 RED 則返回 "帥"，如果顏色是 BLACK 則返回 "將"。
 
