@@ -74,7 +74,10 @@ class Guard(Piece):
         row_end, col_end = end_position
 
         # Guard must move one step diagonally.
-        if not (abs(row_start - row_end) == 1 and abs(col_start - col_end) == 1):
+        is_diagonal_move = (
+            abs(row_start - row_end) == 1 and abs(col_start - col_end) == 1
+        )
+        if not is_diagonal_move:
             return False
 
         # Guard must stay within the palace.
@@ -89,3 +92,30 @@ class Guard(Piece):
 
     def get_display_name(self):
         return "仕" if self.color == ChessSide.RED else "士"
+
+
+class Rook(Piece):
+    def is_valid_move(self, start_position, end_position, board_state):
+        row_start, col_start = start_position
+        row_end, col_end = end_position
+
+        # Rook must move in a straight line, either horizontally or vertically.
+        if row_start != row_end and col_start != col_end:
+            return False
+
+        # Check for any pieces blocking the path.
+        if row_start == row_end:  # Horizontal move
+            step = 1 if col_end > col_start else -1
+            for col in range(col_start + step, col_end, step):
+                if board_state[row_start - 1][col - 1] is not None:
+                    return False
+        else:  # Vertical move
+            step = 1 if row_end > row_start else -1
+            for row in range(row_start + step, row_end, step):
+                if board_state[row - 1][col_start - 1] is not None:
+                    return False
+
+        return True
+
+    def get_display_name(self):
+        return "車" if self.color == ChessSide.RED else "俥"

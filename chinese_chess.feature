@@ -56,7 +56,6 @@ Feature: Chinese Chess (象棋) Rules
   #################################################################
   # 3) ROOK (車)
   #################################################################
-  @skip
   @Rook
   Scenario: Red moves the Rook along a clear rank (Legal)
     Given the board is empty except for a Red Rook at (4, 1)

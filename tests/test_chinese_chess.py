@@ -1,6 +1,6 @@
 from pytest_bdd import scenarios, given, when, then, parsers
 from ai_100x_se_join_quest_task3.chess_board import ChessBoard
-from ai_100x_se_join_quest_task3.chess_piece import General, Guard, ChessSide
+from ai_100x_se_join_quest_task3.chess_piece import General, Guard, Rook, ChessSide
 import re
 
 scenarios("../chinese_chess.feature")
@@ -9,6 +9,7 @@ PIECE_MAPPING = {
     "Red General": (General, ChessSide.RED),
     "Black General": (General, ChessSide.BLACK),
     "Red Guard": (Guard, ChessSide.RED),
+    "Red Rook": (Rook, ChessSide.RED),
     # Add other piece types here as they are implemented
 }
 
@@ -62,6 +63,17 @@ def given_the_board_is_empty_except_for_a_red_guard(row, col):
     return board
 
 
+@given(
+    parsers.parse("the board is empty except for a Red Rook at ({row:d}, {col:d})"),
+    target_fixture="board",
+)
+def given_the_board_is_empty_except_for_a_red_rook(row, col):
+    board = ChessBoard()
+    rook = Rook(ChessSide.RED, (row, col))
+    board.place_piece(rook, (row, col))
+    return board
+
+
 @when(
     parsers.parse(
         "Red moves the General from ({from_row:d}, {from_col:d}) to ({to_row:d}, {to_col:d})"
@@ -77,6 +89,15 @@ def when_red_moves_the_general(board, from_row, from_col, to_row, to_col):
     )
 )
 def when_red_moves_the_guard(board, from_row, from_col, to_row, to_col):
+    board.move_result = board.move_piece((from_row, from_col), (to_row, to_col))
+
+
+@when(
+    parsers.parse(
+        "Red moves the Rook from ({from_row:d}, {from_col:d}) to ({to_row:d}, {to_col:d})"
+    )
+)
+def when_red_moves_the_rook(board, from_row, from_col, to_row, to_col):
     board.move_result = board.move_piece((from_row, from_col), (to_row, to_col))
 
 
