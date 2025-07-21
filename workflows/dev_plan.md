@@ -26,16 +26,20 @@
   - [x] (綠) 撰寫通過測試的程式碼 (日誌 #19)
   - [x] (重構) 程式碼品質優化 (日誌 #21)
   - [x] (格式化) 維護程式碼風格 (日誌 #23)
+- [x] **Scenario: Red moves the Rook along a clear rank (Legal)**
+  - [x] (紅) 撰寫失敗的測試 (日誌 #26)
+  - [x] (綠) 撰寫通過測試的程式碼 (日誌 #27)
+  - [x] (重構) 程式碼品質優化 (日誌 #28)
+  - [x] (格式化) 維護程式碼風格 (日誌 #29)
 
 ## 進行中
-- [ ] **Scenario: Red moves the Rook along a clear rank (Legal)**
+- [ ] **Scenario: Red moves the Rook and attempts to jump over a piece (Illegal)**
   - [ ] (紅) 撰寫失敗的測試
   - [ ] (綠) 撰寫通過測試的程式碼
   - [ ] (重構) 程式碼品質優化
   - [ ] (格式化) 維護程式碼風格
 
 ## 待辦
-- [ ] **Scenario: Red moves the Rook and attempts to jump over a piece (Illegal)**
 - [ ] **Scenario: Red moves the Horse in an “L” shape with no block (Legal)**
 - [ ] **Scenario: Red moves the Horse and it is blocked by an adjacent piece (Illegal)**
 - [ ] **Scenario: Red moves the Cannon like a Rook with an empty path (Legal)**
