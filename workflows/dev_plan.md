@@ -33,14 +33,19 @@
   - [x] (格式化) 維護程式碼風格 (日誌 #29)
 
 ## 進行中
-- [ ] **Scenario: Red moves the Rook and attempts to jump over a piece (Illegal)**
+- [x] **Scenario: Red moves the Rook and attempts to jump over a piece (Illegal)**
+  - [x] (紅&綠) 撰寫失敗與通過的測試 (日誌 #30)
+  - [x] (重構) 程式碼品質優化 (日誌 #31)
+  - [x] (格式化) 維護程式碼風格 (日誌 #32)
+
+## 進行中
+- [ ] **Scenario: Red moves the Horse in an “L” shape with no block (Legal)**
   - [ ] (紅) 撰寫失敗的測試
   - [ ] (綠) 撰寫通過測試的程式碼
   - [ ] (重構) 程式碼品質優化
   - [ ] (格式化) 維護程式碼風格
 
 ## 待辦
-- [ ] **Scenario: Red moves the Horse in an “L” shape with no block (Legal)**
 - [ ] **Scenario: Red moves the Horse and it is blocked by an adjacent piece (Illegal)**
 - [ ] **Scenario: Red moves the Cannon like a Rook with an empty path (Legal)**
 - [ ] **Scenario: Red moves the Cannon and jumps exactly one screen to capture (Legal)**

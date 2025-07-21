@@ -45,3 +45,19 @@
 - 思考：為了確保程式碼品質，我將使用 `ruff` 來格式化與檢查程式碼。
 - 操作：執行 `uv run --group dev ruff format src/` 和 `uv run --group dev ruff check src/`。
 - 結果：`ruff` 檢查通過，無任何檔案變更。
+30. (紅&綠) 撰寫失敗與通過的測試：
+- 思考：在執行 `Scenario: Red moves the Rook and attempts to jump over a piece (Illegal)` 時，測試因 `ValueError: Unknown piece: Black Soldier` 而失敗。這是一個預期中的失敗，因為 `Soldier` 尚未在測試中定義。
+- 操作：
+    1. 在 `src/ai_100x_se_join_quest_task3/chess_piece.py` 中新增 `Soldier` 類別。
+    2. 在 `tests/test_chinese_chess.py` 的 `PIECE_MAPPING` 中加入 `Black Soldier`。
+    3. 再次執行 `uv run --group dev pytest tests/`。
+- 結果：測試通過 (1 passed, 21 skipped)。由於 `Rook.is_valid_move` 的邏輯已能正確處理路徑阻擋，因此測試在修正 `PIECE_MAPPING` 後直接通過。
+31. (重構) 程式碼品質優化：
+- 思考：檢視 `chess_piece.py` 和 `test_chinese_chess.py` 的程式碼後，我認為其邏輯清晰、結構良好，沒有立即需要重構的必要。
+- 操作：無。
+- 結果：無程式碼變更。
+32. (格式化) 維護程式碼風格：
+- 思考：為了確保程式碼品質，我將使用 `ruff` 來格式化與檢查程式碼。
+- 操作：執行 `uv run --group dev ruff format src/ tests/` 和 `uv run --group dev ruff check src/ tests/`。
+- 結果：`ruff` 檢查通過，無任何檔案變更。
+

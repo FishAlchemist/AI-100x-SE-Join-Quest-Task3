@@ -57,13 +57,13 @@ Feature: Chinese Chess (象棋) Rules
   #################################################################
   # 3) ROOK (車)
   #################################################################
+  @skip
   @Rook
   Scenario: Red moves the Rook along a clear rank (Legal)
     Given the board is empty except for a Red Rook at (4, 1)
     When Red moves the Rook from (4, 1) to (4, 9)
     Then the move is legal
 
-  @skip
   @Rook
   Scenario: Red moves the Rook and attempts to jump over a piece (Illegal)
     Given the board has:

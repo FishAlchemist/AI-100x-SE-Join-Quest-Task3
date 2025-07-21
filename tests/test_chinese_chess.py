@@ -1,6 +1,12 @@
 from pytest_bdd import scenarios, given, when, then, parsers
 from ai_100x_se_join_quest_task3.chess_board import ChessBoard
-from ai_100x_se_join_quest_task3.chess_piece import General, Guard, Rook, ChessSide
+from ai_100x_se_join_quest_task3.chess_piece import (
+    General,
+    Guard,
+    Rook,
+    Soldier,
+    ChessSide,
+)
 import re
 
 scenarios("../chinese_chess.feature")
@@ -10,6 +16,7 @@ PIECE_MAPPING = {
     "Black General": (General, ChessSide.BLACK),
     "Red Guard": (Guard, ChessSide.RED),
     "Red Rook": (Rook, ChessSide.RED),
+    "Black Soldier": (Soldier, ChessSide.BLACK),
     # Add other piece types here as they are implemented
 }
 

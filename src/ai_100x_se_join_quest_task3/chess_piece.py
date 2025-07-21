@@ -119,3 +119,11 @@ class Rook(Piece):
 
     def get_display_name(self):
         return "車" if self.color == ChessSide.RED else "俥"
+
+
+class Soldier(Piece):
+    def is_valid_move(self, start_position, end_position, board_state):
+        raise NotImplementedError
+
+    def get_display_name(self):
+        return "兵" if self.color == ChessSide.RED else "卒"
