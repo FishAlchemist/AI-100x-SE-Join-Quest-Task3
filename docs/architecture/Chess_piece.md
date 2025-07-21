@@ -29,6 +29,12 @@ Class: Guard
   - Methods:
     - is_valid_move(start_position: (row, column), end_position: (row, column)): boolean
     // 檢查仕/士的移動是否有效。
+    // 仕（士）的移動規則：
+    //   - 只能在九宮 (palace) 內移動。
+    //   - 每次移動為斜向一格，即行 (row) 和列 (column) 同時改變 ±1。
+    //   - 由於其移動限制，仕（士）最多只能到達九宮內的5個交叉點，是象棋中活動範圍最小的棋子。
+    // 仕（士）的吃子規則：
+    //   - 可以吃掉九宮內，斜線上相鄰一格的敵方棋子，即與自身位置行 (row) 和列 (column) 同時改變 ±1 的敵方棋子。
     - get_display_name(): string
     // 如果顏色是 RED 則返回 "仕"，如果顏色是 BLACK 則返回 "士"。
 
