@@ -209,3 +209,5 @@ __marimo__/
 # Gemini
 temp_log.txt
 commit_message.txt
+allure-results/
+allure-report/

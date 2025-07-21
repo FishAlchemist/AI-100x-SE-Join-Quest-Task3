@@ -14,7 +14,9 @@ class Piece:
         self.color = color
         self.position = position
 
-    def is_valid_move(self, start_position: Position, end_position: Position, board_state) -> bool:
+    def is_valid_move(
+        self, start_position: Position, end_position: Position, board_state
+    ) -> bool:
         """Check if a move is valid for the piece.
 
         Args:
@@ -40,9 +42,13 @@ class Piece:
             return False
 
         # Let subclass implement specific movement rules
-        return self._check_piece_specific_rules(start_position, end_position, board_state)
-    
-    def _check_piece_specific_rules(self, start_position: Position, end_position: Position, board_state) -> bool:
+        return self._check_piece_specific_rules(
+            start_position, end_position, board_state
+        )
+
+    def _check_piece_specific_rules(
+        self, start_position: Position, end_position: Position, board_state
+    ) -> bool:
         """Check piece-specific movement rules.
 
         Args:
@@ -250,7 +256,7 @@ class Elephant(Piece):
         # The eye is the middle point of the diagonal move
         eye_row = (row_start + row_end) // 2
         eye_col = (col_start + col_end) // 2
-        
+
         if board_state[eye_row - 1][eye_col - 1] is not None:
             return False
 
@@ -263,7 +269,9 @@ class Elephant(Piece):
 class Soldier(Piece):
     """Represents a Soldier piece in Chinese chess."""
 
-    def _check_piece_specific_rules(self, start_pos: Position, end_pos: Position, board_state) -> bool:
+    def _check_piece_specific_rules(
+        self, start_pos: Position, end_pos: Position, board_state
+    ) -> bool:
         """Check Soldier-specific movement rules.
 
         Args:
@@ -313,7 +321,7 @@ class Soldier(Piece):
             # 每次只能移動一格
             if abs(row_diff) + abs(col_diff) != 1:
                 return False
-        
+
         return True
 
     def get_display_name(self):

@@ -100,6 +100,7 @@ def given_the_board_is_empty_except_for_a_red_horse(row, col):
     board.place_piece(horse, (row, col))
     return board
 
+
 @given(
     parsers.parse("the board is empty except for a Red Soldier at ({row:d}, {col:d})"),
     target_fixture="board",
@@ -130,17 +131,6 @@ def given_the_board_is_empty_except_for_a_red_elephant(row, col):
     board = ChessBoard()
     elephant = Elephant(ChessSide.RED, (row, col))
     board.place_piece(elephant, (row, col))
-    return board
-
-
-@given(
-    parsers.parse("the board is empty except for a Red Soldier at ({row:d}, {col:d})"),
-    target_fixture="board",
-)
-def given_the_board_is_empty_except_for_a_red_soldier(row, col):
-    board = ChessBoard()
-    soldier = Soldier(ChessSide.RED, (row, col))
-    board.place_piece(soldier, (row, col))
     return board
 
 
@@ -216,14 +206,19 @@ def then_the_move_is_legal(board):
 def then_the_move_is_illegal(board):
     assert board.move_result is False
 
+
 @then("Red wins immediately")
 def then_red_wins_immediately(board):
     # Give the board a chance to update after the move
     is_over, winner, reason = board.is_game_over()
     from ai_100x_se_join_quest_task3.chess_piece import ChessSide
-    assert reason == "Black general captured", f"Expected 'Black general captured' but got '{reason}'"
+
+    assert reason == "Black general captured", (
+        f"Expected 'Black general captured' but got '{reason}'"
+    )
     assert winner == ChessSide.RED, f"Expected RED winner but got {winner}"
     assert is_over is True
+
 
 @then("the game is not over just from that capture")
 def then_the_game_is_not_over(board):

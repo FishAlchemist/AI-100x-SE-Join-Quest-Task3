@@ -71,7 +71,6 @@ Feature: Chinese Chess (象棋) Rules
   #################################################################
   # 4) HORSE (馬/傌)
   #################################################################
-  @skip
   @Horse
   Scenario: Red moves the Horse in an “L” shape with no block (Legal)
     Given the board is empty except for a Red Horse at (3, 3)

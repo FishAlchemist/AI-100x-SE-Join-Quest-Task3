@@ -497,3 +497,13 @@ Found incorrect usage of move_piece return value in test code:
 - Better alignment with game rules
 - Improved code readability
 71. -------------
+72. # Final Verification (2025-07-22)
+
+## Action
+1. Removed the `@skip` tag from the last remaining scenario in `chinese_chess.feature`.
+2. Executed all tests to ensure the entire feature set is working correctly.
+
+## Result
+- All 23 tests passed successfully.
+- This confirms that all acceptance criteria in `chinese_chess.feature` have been met.
+- The project development phase is now complete.

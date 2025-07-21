@@ -1,0 +1,33 @@
+=================================================================== test session starts ===================================================================
+platform win32 -- Python 3.11.10, pytest-8.4.1, pluggy-1.6.0 -- <PROJECT_ROOT>\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: <PROJECT_ROOT>
+configfile: pytest.ini
+plugins: allure-pytest-bdd-2.14.3, bdd-8.1.0
+collected 23 items
+
+tests/test_chinese_chess.py::test_red_moves_the_horse_in_an_l_shape_with_no_block_legal_chinese_chess_rules PASSED                                   [  4%]
+tests/test_chinese_chess.py::test_red_moves_the_general_within_the_palace_legal PASSED                                                               [  8%]
+tests/test_chinese_chess.py::test_red_moves_the_general_outside_the_palace_illegal PASSED                                                            [ 13%]
+tests/test_chinese_chess.py::test_generals_face_each_other_on_the_same_file_illegal PASSED                                                           [ 17%]
+tests/test_chinese_chess.py::test_red_moves_the_guard_diagonally_in_the_palace_legal PASSED                                                          [ 21%]
+tests/test_chinese_chess.py::test_red_moves_the_guard_straight_illegal PASSED                                                                        [ 26%]
+tests/test_chinese_chess.py::test_red_moves_the_rook_along_a_clear_rank_legal PASSED                                                                 [ 30%]
+tests/test_chinese_chess.py::test_red_moves_the_rook_and_attempts_to_jump_over_a_piece_illegal PASSED                                                [ 34%]
+tests/test_chinese_chess.py::test_red_moves_the_horse_in_an_l_shape_with_no_block_legal PASSED                                                       [ 39%]
+tests/test_chinese_chess.py::test_red_moves_the_horse_and_it_is_blocked_by_an_adjacent_piece_illegal PASSED                                          [ 43%]
+tests/test_chinese_chess.py::test_red_moves_the_cannon_like_a_rook_with_an_empty_path_legal PASSED                                                   [ 47%]
+tests/test_chinese_chess.py::test_red_moves_the_cannon_and_jumps_exactly_one_screen_to_capture_legal PASSED                                          [ 52%]
+tests/test_chinese_chess.py::test_red_moves_the_cannon_and_tries_to_jump_with_zero_screens_illegal PASSED                                            [ 56%]
+tests/test_chinese_chess.py::test_red_moves_the_cannon_and_tries_to_jump_with_more_than_one_screen_illegal PASSED                                    [ 60%]
+tests/test_chinese_chess.py::test_red_moves_the_elephant_2step_diagonal_with_a_clear_midpoint_legal PASSED                                           [ 65%]
+tests/test_chinese_chess.py::test_red_moves_the_elephant_and_tries_to_cross_the_river_illegal PASSED                                                 [ 69%]
+tests/test_chinese_chess.py::test_red_moves_the_elephant_and_its_midpoint_is_blocked_illegal PASSED                                                  [ 73%]
+tests/test_chinese_chess.py::test_red_moves_the_soldier_forward_before_crossing_the_river_legal PASSED                                               [ 78%]
+tests/test_chinese_chess.py::test_red_moves_the_soldier_and_tries_to_move_sideways_before_crossing_illegal PASSED                                    [ 82%]
+tests/test_chinese_chess.py::test_red_moves_the_soldier_sideways_after_crossing_the_river_legal PASSED                                               [ 86%]
+tests/test_chinese_chess.py::test_red_moves_the_soldier_and_attempts_to_move_backward_after_crossing_illegal PASSED                                  [ 91%]
+tests/test_chinese_chess.py::test_red_captures_opponents_general_and_wins_immediately_legal PASSED                                                   [ 95%]
+tests/test_chinese_chess.py::test_red_captures_a_nongeneral_piece_and_the_game_continues_legal PASSED                                                [100%]
+
+=================================================================== 23 passed in 0.07s ====================================================================
