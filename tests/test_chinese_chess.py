@@ -3,8 +3,11 @@ from ai_100x_se_join_quest_task3.chess_board import ChessBoard
 from ai_100x_se_join_quest_task3.chess_piece import (
     General,
     Guard,
+    Horse,
     Rook,
+    Cannon,
     Soldier,
+    Elephant,
     ChessSide,
 )
 import re
@@ -15,9 +18,15 @@ PIECE_MAPPING = {
     "Red General": (General, ChessSide.RED),
     "Black General": (General, ChessSide.BLACK),
     "Red Guard": (Guard, ChessSide.RED),
+    "Black Guard": (Guard, ChessSide.BLACK),
+    "Red Horse": (Horse, ChessSide.RED),
     "Red Rook": (Rook, ChessSide.RED),
+    "Black Rook": (Rook, ChessSide.BLACK),
+    "Red Cannon": (Cannon, ChessSide.RED),
+    "Black Cannon": (Cannon, ChessSide.BLACK),
+    "Red Soldier": (Soldier, ChessSide.RED),
     "Black Soldier": (Soldier, ChessSide.BLACK),
-    # Add other piece types here as they are implemented
+    "Red Elephant": (Elephant, ChessSide.RED),
 }
 
 
@@ -81,13 +90,67 @@ def given_the_board_is_empty_except_for_a_red_rook(row, col):
     return board
 
 
+@given(
+    parsers.parse("the board is empty except for a Red Horse at ({row:d}, {col:d})"),
+    target_fixture="board",
+)
+def given_the_board_is_empty_except_for_a_red_horse(row, col):
+    board = ChessBoard()
+    horse = Horse(ChessSide.RED, (row, col))
+    board.place_piece(horse, (row, col))
+    return board
+
+@given(
+    parsers.parse("the board is empty except for a Red Soldier at ({row:d}, {col:d})"),
+    target_fixture="board",
+)
+def given_the_board_is_empty_except_for_a_red_soldier(row, col):
+    board = ChessBoard()
+    soldier = Soldier(ChessSide.RED, (row, col))
+    board.place_piece(soldier, (row, col))
+    return board
+
+
+@given(
+    parsers.parse("the board is empty except for a Red Cannon at ({row:d}, {col:d})"),
+    target_fixture="board",
+)
+def given_the_board_is_empty_except_for_a_red_cannon(row, col):
+    board = ChessBoard()
+    cannon = Cannon(ChessSide.RED, (row, col))
+    board.place_piece(cannon, (row, col))
+    return board
+
+
+@given(
+    parsers.parse("the board is empty except for a Red Elephant at ({row:d}, {col:d})"),
+    target_fixture="board",
+)
+def given_the_board_is_empty_except_for_a_red_elephant(row, col):
+    board = ChessBoard()
+    elephant = Elephant(ChessSide.RED, (row, col))
+    board.place_piece(elephant, (row, col))
+    return board
+
+
+@given(
+    parsers.parse("the board is empty except for a Red Soldier at ({row:d}, {col:d})"),
+    target_fixture="board",
+)
+def given_the_board_is_empty_except_for_a_red_soldier(row, col):
+    board = ChessBoard()
+    soldier = Soldier(ChessSide.RED, (row, col))
+    board.place_piece(soldier, (row, col))
+    return board
+
+
 @when(
     parsers.parse(
         "Red moves the General from ({from_row:d}, {from_col:d}) to ({to_row:d}, {to_col:d})"
     )
 )
 def when_red_moves_the_general(board, from_row, from_col, to_row, to_col):
-    board.move_result = board.move_piece((from_row, from_col), (to_row, to_col))
+    board.move_piece((from_row, from_col), (to_row, to_col))
 
 
 @when(
@@ -96,7 +159,7 @@ def when_red_moves_the_general(board, from_row, from_col, to_row, to_col):
     )
 )
 def when_red_moves_the_guard(board, from_row, from_col, to_row, to_col):
-    board.move_result = board.move_piece((from_row, from_col), (to_row, to_col))
+    board.move_piece((from_row, from_col), (to_row, to_col))
 
 
 @when(
@@ -105,7 +168,43 @@ def when_red_moves_the_guard(board, from_row, from_col, to_row, to_col):
     )
 )
 def when_red_moves_the_rook(board, from_row, from_col, to_row, to_col):
-    board.move_result = board.move_piece((from_row, from_col), (to_row, to_col))
+    board.move_piece((from_row, from_col), (to_row, to_col))
+
+
+@when(
+    parsers.parse(
+        "Red moves the Horse from ({from_row:d}, {from_col:d}) to ({to_row:d}, {to_col:d})"
+    )
+)
+def when_red_moves_the_horse(board, from_row, from_col, to_row, to_col):
+    board.move_piece((from_row, from_col), (to_row, to_col))
+
+
+@when(
+    parsers.parse(
+        "Red moves the Cannon from ({from_row:d}, {from_col:d}) to ({to_row:d}, {to_col:d})"
+    )
+)
+def when_red_moves_the_cannon(board, from_row, from_col, to_row, to_col):
+    board.move_piece((from_row, from_col), (to_row, to_col))
+
+
+@when(
+    parsers.parse(
+        "Red moves the Elephant from ({from_row:d}, {from_col:d}) to ({to_row:d}, {to_col:d})"
+    )
+)
+def when_red_moves_the_elephant(board, from_row, from_col, to_row, to_col):
+    board.move_piece((from_row, from_col), (to_row, to_col))
+
+
+@when(
+    parsers.parse(
+        "Red moves the Soldier from ({from_row:d}, {from_col:d}) to ({to_row:d}, {to_col:d})"
+    )
+)
+def when_red_moves_the_soldier(board, from_row, from_col, to_row, to_col):
+    board.move_piece((from_row, from_col), (to_row, to_col))
 
 
 @then("the move is legal")
@@ -116,3 +215,18 @@ def then_the_move_is_legal(board):
 @then("the move is illegal")
 def then_the_move_is_illegal(board):
     assert board.move_result is False
+
+@then("Red wins immediately")
+def then_red_wins_immediately(board):
+    # Give the board a chance to update after the move
+    is_over, winner, reason = board.is_game_over()
+    from ai_100x_se_join_quest_task3.chess_piece import ChessSide
+    assert reason == "Black general captured", f"Expected 'Black general captured' but got '{reason}'"
+    assert winner == ChessSide.RED, f"Expected RED winner but got {winner}"
+    assert is_over is True
+
+@then("the game is not over just from that capture")
+def then_the_game_is_not_over(board):
+    is_over, _, reason = board.is_game_over()
+    assert reason is None, f"Expected no game over reason but got '{reason}'"
+    assert is_over is False
